@@ -1,0 +1,58 @@
+// react-native-okhttp-nodelay: Android library module.
+//
+// No native modules, no codegen. The host app's autolinking constructs
+// OkHttpNoDelayPackage from src/main/java, and that registers the hook.
+
+buildscript {
+    ext.getExtOrDefault = { name, defaultValue ->
+        rootProject.ext.has(name) ? rootProject.ext.get(name) : defaultValue
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:${getExtOrDefault('AGP', '8.7.2')}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${getExtOrDefault('kotlinVersion', '2.1.20')}"
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+android {
+    namespace 'live.citymall.okhttpnodelay'
+    compileSdk getExtOrDefault('compileSdkVersion', 36)
+
+    defaultConfig {
+        minSdk getExtOrDefault('minSdkVersion', 24)
+        targetSdk getExtOrDefault('targetSdkVersion', 36)
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        buildConfig false
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    // Also brings OkHttp, at the version the host's React Native ships.
+    implementation "com.facebook.react:react-android"
+
+    testImplementation "junit:junit:4.13.2"
+}

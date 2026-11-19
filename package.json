@@ -1,0 +1,19 @@
+{
+  "name": "react-native-okhttp-nodelay",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Android: turns off Nagle (TCP_NODELAY) on React Native's fetch / XHR sockets, removing a ~50 ms stall on every POST. Autolinked; no app code.",
+  "files": [
+    "android",
+    "!android/build",
+    "!android/.gradle"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/city-mall/react-native-okhttp-nodelay.git"
+  },
+  "license": "UNLICENSED",
+  "peerDependencies": {
+    "react-native": ">=0.73.0"
+  }
+}
